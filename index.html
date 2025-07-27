@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Animated Random Quote & Font</title>
 
-<!-- Import fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display&family=Fredoka&family=Lobster&family=Cinzel&display=swap" rel="stylesheet" />
+<!-- Import all requested fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family:Bangers&family=Cinzel&family=Fredoka&family=Great+Vibes&family=Merienda&family=Pacifico&family=Playfair+Display&family=Raleway&family=Lobster&display=swap" rel="stylesheet" />
 
 <style>
   body {
@@ -29,7 +29,7 @@
     background: linear-gradient(90deg, #4facfe, #00f2fe);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* Removed text-shadow */
+    /* No text shadow */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 1s ease, transform 1s ease;
@@ -438,10 +438,15 @@
 
   const fonts = [
     "'Pacifico', cursive",
-    "'Playfair Display', serif",
+    "'Great Vibes', cursive",
     "'Fredoka', sans-serif",
+    "'Playfair Display', serif",
+    "'Cinzel', serif",
+    "'Bangers', cursive",
     "'Lobster', cursive",
-    "'Cinzel', serif"
+    "'Raleway', sans-serif",
+    "'Merienda', cursive",
+    "'Abril Fatface', serif"
   ];
 
   const quoteElement = document.getElementById('quote');
@@ -451,12 +456,12 @@
   const selectedQuote = quotes[Math.floor(Math.random() * quotes.length)];
   const selectedFont = fonts[Math.floor(Math.random() * fonts.length)];
 
-  // Apply to elements
+  // Apply quote and font
   quoteElement.textContent = selectedQuote;
   quoteElement.style.fontFamily = selectedFont;
   fontNameElement.textContent = "Font: " + selectedFont.replace(/['",]/g, '');
 
-  // Trigger animation
+  // Animate quote on load
   setTimeout(() => {
     quoteElement.classList.add('show');
   }, 50);
