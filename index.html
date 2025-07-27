@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bangers&family=Cinzel:wght@400..900&family=Fredoka:wght@300..700&family=Great+Vibes&family=Lobster&family=Merienda:wght@300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <style>
   body {
-    background: #101421; /* neutral grey */
+    background: #101421; /* dark slate with subtle blue */
     color: #fff;
     font-family: Arial, sans-serif;
     display: flex;
@@ -27,7 +27,7 @@
   }
   .quote {
     font-size: 2.5rem;
-    font-weight: 400;
+    font-weight: 400; /* lighter weight */
     background: linear-gradient(135deg,
       #e6e8ea 0%,
       #c1c3c6 25%,
@@ -35,7 +35,7 @@
       #bfc1c4 55%,
       #d9dbdd 75%,
       #e6e8ea 100%);
-    background-size: 200% 200%;
+    background-size: 300% 300%; /* big enough for shimmer */
     background-position: 0% 50%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -43,7 +43,6 @@
     transform: translateY(20px);
     transition: opacity 1s ease, transform 1s ease;
     min-height: 4rem;
-    /* shimmer animation will run after fade-in */
   }
   .quote.show {
     opacity: 1;
@@ -53,7 +52,7 @@
   #fontName {
     margin-top: 1rem;
     font-size: 1rem;
-    color: #ddd;
+    color: #bbb;
     font-family: Arial, sans-serif;
   }
 
@@ -469,19 +468,18 @@
   const quoteElement = document.getElementById('quote');
   const fontNameElement = document.getElementById('fontName');
 
-  // Pick a random quote and font ONCE on page load
+  // Pick random quote and font on load
   const selectedQuote = quotes[Math.floor(Math.random() * quotes.length)];
   const selectedFont = fonts[Math.floor(Math.random() * fonts.length)];
 
-  // Set quote text and font
   quoteElement.textContent = selectedQuote;
   quoteElement.style.fontFamily = selectedFont;
   fontNameElement.textContent = "Font: " + selectedFont.replace(/['",]/g, '');
 
-  // Trigger slide-up fade-in and start shimmer animation
+  // Trigger fade-in + slide-up, then start shimmer animation
   setTimeout(() => {
     quoteElement.classList.add('show');
-  }, 50);
+  }, 100);
 </script>
 
 </body>
