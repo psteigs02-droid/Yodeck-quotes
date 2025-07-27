@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Quote Rotator with Random Font</title>
+<title>Animated Random Quote & Font</title>
 
-<!-- Import all fonts -->
+<!-- Import fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display&family=Fredoka&family=Lobster&family=Cinzel&display=swap" rel="stylesheet" />
 
 <style>
@@ -29,7 +29,7 @@
     background: linear-gradient(90deg, #4facfe, #00f2fe);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(0, 242, 254, 0.7);
+    /* Removed text-shadow */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 1s ease, transform 1s ease;
@@ -435,7 +435,7 @@
   "It's time to try defying gravity. – Elphaba, Wicked"
 ];
   
-  // List of fonts to randomly pick from
+
   const fonts = [
     "'Pacifico', cursive",
     "'Playfair Display', serif",
@@ -447,24 +447,19 @@
   const quoteElement = document.getElementById('quote');
   const fontNameElement = document.getElementById('fontName');
 
-  // Pick a random font once on page load
+  // Pick a random quote and font ONCE on page load
+  const selectedQuote = quotes[Math.floor(Math.random() * quotes.length)];
   const selectedFont = fonts[Math.floor(Math.random() * fonts.length)];
+
+  // Apply to elements
+  quoteElement.textContent = selectedQuote;
   quoteElement.style.fontFamily = selectedFont;
   fontNameElement.textContent = "Font: " + selectedFont.replace(/['",]/g, '');
 
-  let index = 0;
-
-  function showQuote() {
-    quoteElement.classList.remove('show');
-    setTimeout(() => {
-      quoteElement.textContent = quotes[index];
-      quoteElement.classList.add('show');
-      index = (index + 1) % quotes.length;
-    }, 1000);
-  }
-
-  showQuote();
-  setInterval(showQuote, 6000);
+  // Trigger animation
+  setTimeout(() => {
+    quoteElement.classList.add('show');
+  }, 50);
 </script>
 
 </body>
