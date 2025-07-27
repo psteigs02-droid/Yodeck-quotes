@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bangers&family=Cinzel:wght@400..900&family=Fredoka:wght@300..700&family=Great+Vibes&family=Lobster&family=Merienda:wght@300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <style>
   body {
-    background: #0d0d0d;
+    background: #888888; /* neutral grey */
     color: #fff;
     font-family: Arial, sans-serif;
     display: flex;
@@ -20,69 +20,58 @@
     height: 100vh;
     margin: 0;
   }
-  .platinum-text {
-  font-size: 2.5rem;
-  font-weight: 700;
-  background: linear-gradient(135deg,
-    #e6e8ea 0%,
-    #c1c3c6 25%,
-    #f4f6f8 40%,
-    #bfc1c4 55%,
-    #d9dbdd 75%,
-    #e6e8ea 100%);
-  background-size: 200% 200%;
-  background-position: 50% 50%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  position: relative;
-  /* Optional: subtle inner shadow */
-  text-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.7),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.15);
-  transition: background-position 3s ease;
-  /* Animate gradient slowly for shimmer effect */
-  animation: shimmer 6s linear infinite;
-}
-
-/* Slow shimmer animation */
-@keyframes shimmer {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
   .quote-container {
     max-width: 800px;
     padding: 2rem;
     text-align: center;
   }
   .quote {
-    font-size: 2rem;
-    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg,
+      #e6e8ea 0%,
+      #c1c3c6 25%,
+      #f4f6f8 40%,
+      #bfc1c4 55%,
+      #d9dbdd 75%,
+      #e6e8ea 100%);
+    background-size: 200% 200%;
+    background-position: 0% 50%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* No text shadow */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 1s ease, transform 1s ease;
     min-height: 4rem;
+    /* shimmer animation will run after fade-in */
   }
   .quote.show {
     opacity: 1;
     transform: translateY(0);
+    animation: shimmer 6s linear infinite;
   }
   #fontName {
     margin-top: 1rem;
     font-size: 1rem;
-    color: #aaa;
+    color: #ddd;
     font-family: Arial, sans-serif;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
   }
 </style>
 </head>
 <body>
 
 <div class="quote-container">
-  <div id="quote" class="platinum-text"></div>
-  <div id="FontName"></div>
+  <div id="quote" class="quote"></div>
+  <div id="fontName"></div>
 </div>
 
 <script>
@@ -486,12 +475,12 @@
   const selectedQuote = quotes[Math.floor(Math.random() * quotes.length)];
   const selectedFont = fonts[Math.floor(Math.random() * fonts.length)];
 
-  // Apply quote and font
+  // Set quote text and font
   quoteElement.textContent = selectedQuote;
   quoteElement.style.fontFamily = selectedFont;
   fontNameElement.textContent = "Font: " + selectedFont.replace(/['",]/g, '');
 
-  // Animate quote on load
+  // Trigger slide-up fade-in and start shimmer animation
   setTimeout(() => {
     quoteElement.classList.add('show');
   }, 50);
